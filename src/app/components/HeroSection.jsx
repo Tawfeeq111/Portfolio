@@ -5,9 +5,9 @@ import { TypeAnimation } from 'react-type-animation';
 function HeroSection() {
     return (
         <section>
-            <div className="grid grid-cols-1 md:grid-cols-12 mt-20">
+            <div className="grid grid-cols-1 md:grid-cols-12 mt-20 md:gap-20">
                 <div className="col-span-7 place-self-center text-center sm:text-left">
-                    <h1 className='text-white mb-4 text-4xl sm:text-5xl font-extrabold'>
+                    <h1 className='text-white mb-4 text-4xl sm:text-7xl font-extrabold'>
                         <span className="block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
                             Hello, I'm{" "}
                         </span>
