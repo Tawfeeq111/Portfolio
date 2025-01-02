@@ -1,5 +1,7 @@
+"use client"
 import React from 'react'
 import ProjectCard from './ProjectCard';
+import { useState } from 'react';
 
 function Project() {
 
@@ -51,24 +53,39 @@ function Project() {
         }
     ];
 
+    const [porjects, setProjects] = useState(projectsData);
+
+    const handelClick = (e) => {
+        const list = [];
+        const name = e.target.getAttribute("name");
+        projectsData.forEach(element => {
+            if (element.tag.findIndex((tag) => tag === name) !== -1) {
+                list.push(element); 
+            }
+        });
+        setProjects(list);
+    }
+
 
     return (
         <div className='mt-10'>
             <h1 className='text-4xl font-bold text-center'>Projects</h1>
-            <div className='flex items-center justify-center gap-6 md:gap-20 mt-10'>
-                <button className='border-2 border-purple-500 py-4 px-6 rounded-full hover:border-white'>All</button>
-                <button className='border-2 border-purple-500 py-4 px-6 rounded-full hover:border-white'>Web</button>
-                <button className='border-2 border-purple-500 py-4 px-6 rounded-full hover:border-white'>ML</button>
+            <div className='flex items-center justify-center gap-6 md:gap-8 mt-10'>
+                <button onClick={handelClick} name={"All"} className='border-2 border-purple-500 py-4 px-6 rounded-full hover:border-white'>All</button>
+                <button onClick={handelClick} name={"Web"} className='border-2 border-purple-500 py-4 px-6 rounded-full hover:border-white'>Web</button>
+                <button onClick={handelClick} name={"Mobile"} className='border-2 border-purple-500 py-4 px-6 rounded-full hover:border-white'>ML</button>
             </div>
-            <div>
+            <div className='grid md:grid-cols-3 gap-8 md:gap-12 mt-7'>
             {
-                projectsData.map((element) => {
+                porjects.map((element) => {
                     return (
                         <ProjectCard 
                             key={element.id} 
                             imgUrl={element.image} 
                             title={element.title} 
                             description={element.description} 
+                            gitUrl={element.gitUrl}
+                            previewUrl={element.previewUrl}
                         />
                     );
                 })
